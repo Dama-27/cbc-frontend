@@ -1,7 +1,39 @@
+import axios from "axios"
+import { useState } from "react"
+
 export default function LoginPage() {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+
+    function handleLogin(){
+        console.log(email)
+        console.log(password)
+        // axios.post("http://localhost:5000")
+    }
+
     return(
-        <div className='w-full h-screen bg-gray-100 flex justify-center items-center'>
-            <div className='w-[400px] h-[500px] bg-white shadow-lg rounded-lg p-8'>
+        <div className='w-full h-screen bg-[url("/login.jpg")] bg-center bg-cover flex justify-evenly items-center '>
+            <div className="w-[50%] h-full">
+
+            </div>
+            <div className="w-[50%] h-full flex justify-center items-center">
+                <div className="w-[500px] h-[600px] backdrop-blur-md rounded-[50px] shadow-2xl flex flex-col justify-center items-center">
+                    <input onChange={(e)=>{
+                        setEmail(e.target.value)
+                    }} 
+                    value={email} className="w-[300px] h-[50px] border border-[#c3efe9] rounded-[50px] my-[20px]"/>
+                    <input onChange={(e)=>{
+                        setPassword(e.target.value)
+                    }} value={password} type="password" className="w-[300px] h-[50px] border border-[#c3efe9] rounded-[50px] my-[20px] mb-[20px]"/>
+                    <button onClick={
+                            handleLogin()
+                    } className="w-[300px] h-[50px] cursor-pointer bg-[#c3efe9] rounded-[50px] text-white font-bold ">Login</button>
+                </div>
+            </div>
+            
+        
+        
+            {/* <div className='w-[400px] h-[500px] bg-white shadow-lg rounded-lg p-8'>
                 <h1 className='text-2xl font-bold mb-6 text-center'>Login</h1>
                 <form>
                     <div className='mb-4'>
@@ -14,7 +46,7 @@ export default function LoginPage() {
                     </div>
                     <button type='submit' className='w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700'>Login</button>
                 </form>
-            </div>
+            </div> */}
         </div>
     )
 }
