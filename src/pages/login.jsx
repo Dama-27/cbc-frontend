@@ -1,15 +1,29 @@
 import axios from "axios"
 import { useState } from "react"
+import toast from "react-hot-toast"
 
 export default function LoginPage() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    function handleLogin(){
-        console.log(email)
-        console.log(password)
-        // axios.post("http://localhost:5000")
+    async function handleLogin(){
+        // console.log(email)
+        // console.log(password)
+        try{
+            const response = await axios.post("http://localhost:3000/users/login",{
+            email: email,
+            password: password
+            })
+            // alert("Login successful")
+            toast.success("Login successful")
+            // console.log(response.data)
+        }
+        catch(e){
+            // alert(e.response.data.message)
+            toast.error(e.response.data.message)
+        }
     }
+        
 
     return(
         <div className='w-full h-screen bg-[url("/login.jpg")] bg-center bg-cover flex justify-evenly items-center '>
@@ -26,7 +40,7 @@ export default function LoginPage() {
                         setPassword(e.target.value)
                     }} value={password} type="password" className="w-[300px] h-[50px] border border-[#c3efe9] rounded-[50px] my-[20px] mb-[20px]"/>
                     <button onClick={
-                            handleLogin()
+                            handleLogin
                     } className="w-[300px] h-[50px] cursor-pointer bg-[#c3efe9] rounded-[50px] text-white font-bold ">Login</button>
                 </div>
             </div>
