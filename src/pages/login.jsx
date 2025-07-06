@@ -1,22 +1,37 @@
 import axios from "axios"
 import { useState } from "react"
 import toast from "react-hot-toast"
+import { useNavigate } from "react-router-dom"
 
 export default function LoginPage() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const navigate = useNavigate()
 
     async function handleLogin(){
         // console.log(email)
         // console.log(password)
         try{
-            const response = await axios.post("http://localhost:3000/users/login",{
+            const response = await axios.post(import.meta.env.VITE_BACKEND_URL+"/api/users/login",{
             email: email,
             password: password
             })
             // alert("Login successful")
             toast.success("Login successful")
-            // console.log(response.data)
+            console.log(response.data)
+            localStorage.setItem("token", response.data.token)
+
+            if(response.data.role == "admin"){
+                //page will refresh and redirect
+                // window.location.href="/admin"
+                navigate("/admin")
+            }
+            else{
+                // window.location.href="/"
+                navigate("/")
+            }
+            
+            
         }
         catch(e){
             // alert(e.response.data.message)

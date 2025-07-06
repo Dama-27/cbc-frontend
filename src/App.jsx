@@ -4,10 +4,10 @@ import Header from './components/header'
 import ProductCard from './components/productaCard'
 import HomePage from './pages/home'
 import LoginPage from './pages/login'
-import SignUp from './pages/signup'
 import AdminPage from './pages/adminPage'
 import TestPage from './pages/testPage'
 import { Toaster } from 'react-hot-toast'
+import RegisterPage from './pages/register'
 
 
 function App() {
@@ -40,7 +40,7 @@ function App() {
         <Routes path="/*">
           <Route path="/" element={<HomePage/>}/>
           <Route path="/login" element={<LoginPage/>}/>
-          <Route path="/signup" element={<SignUp/>}/>
+          <Route path="/signup" element={<RegisterPage/>}/>
           <Route path="/Testing" element={<TestPage/>}/>
           <Route path="/admin/*" element={<AdminPage/>}/>
           <Route path="/*" element={<h1>404 not found</h1>} />
