@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js"
 import { useState } from "react"
+import mediaUpload from "../utils/mediaUpload"
 
 export default function TestPage(){
     const [count, setCount] = useState(0)
@@ -18,25 +19,17 @@ export default function TestPage(){
     //useLocation
 
     const [image,setImage]=useState(null)
-
-    const url="https://cerlqnpkljgprpjwwfnb.supabase.co"
-    const key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNlcmxxbnBrbGpncHJwand3Zm5iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE5NTE4MTIsImV4cCI6MjA2NzUyNzgxMn0.zUHXfAAuMDxmO79-epkBXu71i9yemcwnlUbzQQAkiEA"
-
-    const supabase = createClient(url,key)
     function fileUpload(){
-        supabase.storage.from("images").upload(image.name,image,{
-            upsert:false,
-            cacheControl: '3600'
-        }).then(
-            ()=>{
-                const publicUrl = supabase.storage.from("images").getPublicUrl(image.name).data.publicUrl
-                console.log(publicUrl)
+        mediaUpload(image).then(
+            (res)=>{
+                console.log(res)
             }
         ).catch(
             (e)=>{
                 console.log(e)
             }
         )
+    
     }
 
     return(
