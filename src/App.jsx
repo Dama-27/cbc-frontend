@@ -41,7 +41,7 @@ function App() {
           <Route path="/" element={<HomePage/>}/>
           <Route path="/login" element={<LoginPage/>}/>
           <Route path="/signup" element={<RegisterPage/>}/>
-          <Route path="/Testing" element={<TestPage/>}/>
+          <Route path="/testing" element={<TestPage/>}/>
           <Route path="/admin/*" element={<AdminPage/>}/>
           <Route path="/*" element={<h1>404 not found</h1>} />
           
@@ -53,3 +53,5 @@ function App() {
 }
 
 export default App
+// https://cerlqnpkljgprpjwwfnb.supabase.co
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNlcmxxbnBrbGpncHJwand3Zm5iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE5NTE4MTIsImV4cCI6MjA2NzUyNzgxMn0.zUHXfAAuMDxmO79-epkBXu71i9yemcwnlUbzQQAkiEA

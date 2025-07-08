@@ -1,3 +1,4 @@
+import { createClient } from "@supabase/supabase-js"
 import { useState } from "react"
 
 export default function TestPage(){
@@ -16,7 +17,27 @@ export default function TestPage(){
     //useParams
     //useLocation
 
+    const [image,setImage]=useState(null)
 
+    const url="https://cerlqnpkljgprpjwwfnb.supabase.co"
+    const key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNlcmxxbnBrbGpncHJwand3Zm5iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE5NTE4MTIsImV4cCI6MjA2NzUyNzgxMn0.zUHXfAAuMDxmO79-epkBXu71i9yemcwnlUbzQQAkiEA"
+
+    const supabase = createClient(url,key)
+    function fileUpload(){
+        supabase.storage.from("images").upload(image.name,image,{
+            upsert:false,
+            cacheControl: '3600'
+        }).then(
+            ()=>{
+                const publicUrl = supabase.storage.from("images").getPublicUrl(image.name).data.publicUrl
+                console.log(publicUrl)
+            }
+        ).catch(
+            (e)=>{
+                console.log(e)
+            }
+        )
+    }
 
     return(
         <div className="w-full h-screen flex justify-center items-center flex-col">
@@ -54,7 +75,21 @@ export default function TestPage(){
                     </button>
                 </div>
             </div>
-        </div>          
+            <div className="w-[450px] h-[250px] shadow flex justify-center items-center ">
+                <input type="file" className="file-input file-input-bordered w-full max-w-xs"
+                onChange={
+                    (e)=>{
+                        setImage(e.target.files[0])
+                        // console.log(e.target.files[0])
+                    }
+                } />
+                <button onClick={fileUpload} className="bg-green-600 text-white font-bold text-center w-[100px] h-[40px] text-[20px] cursor-pointer ml-[10px]">Upload</button>
+
+
+
+            </div>
+        </div>  
+                
 
     )
 }
