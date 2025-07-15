@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { sampleProducts } from "../../assets/sampleData"
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 export default function AdminProductsPage(){
     const [products, setProducts]=useState(sampleProducts)
@@ -31,6 +32,7 @@ export default function AdminProductsPage(){
                         <th>Labelled Price</th>
                         <th>Price</th>
                         <th>Stock</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,6 +59,11 @@ export default function AdminProductsPage(){
                                         <td>{item.labelledPrice}</td>
                                         <td>{item.price}</td>
                                         <td>{item.stock}</td>
+                                        <td>
+                                            <div>
+                                                <FaTrash /> <FaEdit/>
+                                            </div>
+                                        </td>
 
                                     </tr>
                                 )
