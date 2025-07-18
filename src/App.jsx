@@ -8,7 +8,7 @@ import AdminPage from './pages/adminPage'
 import TestPage from './pages/testPage'
 import { Toaster } from 'react-hot-toast'
 import RegisterPage from './pages/register'
-import AddProductPage from './pages/admin/addProduct'
+import AddProductPage from './pages/admin/addProductPage'
 
 
 function App() {
