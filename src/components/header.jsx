@@ -1,15 +1,23 @@
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import UserData from "./userData";
 export default function Header(){
+    const navigate = useNavigate()
+    
     return(
-       <div className="bg-red-500">
-        
-        <Link to="/">Home</Link>
-        <Link to="/login">Login</Link>
-        <Link to="/signup">Sign Up</Link>
-        <h1 className="text-[30px] font-bold text-blue-700">crystal beauty clear</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod eum corporis placeat, inventore corrupti itaque labore amet ut doloremque autem accusamus dolores iure neque? Itaque rem et ex earum?</p>
-        {/* <UserData></UserData> */}
-       </div>
+       <header className="w-full h-[80px] shadow-2xl flex">
+            <img className="w-[80px] h-[80px] object-cover cursor-pointer" src="/logo.png" alt="logo" onClick={()=>{
+                navigate("/")
+            }}/>
+            <div className='w-[calc(100%-80px)] h-full flex justify-center items-center'>
+                 <Link to="/" className='text-[20px] font-bold mx-2'>Home</Link>
+                <Link to="/products" className='text-[20px] font-bold mx-2'>Products</Link>
+                <Link to="/about" className='text-[20px] font-bold mx-2'>About</Link>
+                <Link to="/contact" className='text-[20px] font-bold mx-2'>Contact</Link>
+            </div>
+            <div className="w-[80px] bg-blue-500">
+
+            </div>
+       
+       </header>
     )
 }

@@ -1,10 +1,21 @@
+import { Route, Routes } from "react-router-dom";
+import Header from "../components/header";
+import ProductPage from "./client/productPage";
+
 export default function HomePage(){
     return(
-        <div className='w-full h-screen bg-gray-100 flex justify-center items-center'>
-            <div className='w-[400px] h-[500px] bg-white shadow-lg rounded-lg p-8'>
-                <h1 className='text-2xl font-bold mb-6 text-center'>Welcome to the Home Page</h1>
-                <p className='text-gray-700'>This is the home page of our application.</p>
+        <div className='w-full h-screen flex flex-col items-center'>
+            <Header></Header>
+            <div className="w-full h-[calc(100vh-80px)] flex flex-col items-center">
+                <Routes path="/*">
+                    <Route path="/" element={<h1>Home</h1>} />
+                    <Route path="/products" element={<ProductPage/>} />
+                    <Route path="/about" element={<h1>About</h1>} />
+                    <Route path="/contact" element={<h1>Contact</h1>} />
+                    <Route path="/*" element={<h1>404 Not Found</h1>} />
+                </Routes>
             </div>
+
         </div>
     )
 }
