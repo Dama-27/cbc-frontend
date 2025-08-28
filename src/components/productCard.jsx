@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 
 export default function ProductCard({ product }) {
+
   return (
-    <Link to={"/overview/"+product.productId} className="w-[300px] h-[460px] bg-white shadow-md rounded-xl p-4 m-4 flex flex-col justify-between hover:shadow-lg transition-shadow duration-300">
-      
+    <Link 
+      to={"/overview/" + product.productId} 
+      className="w-[300px] h-[460px] bg-white shadow-md rounded-xl p-4 m-4 flex flex-col justify-between hover:shadow-lg transition-shadow duration-300"
+    >
       {/* Product Image */}
       <div className="w-full h-[180px] overflow-hidden rounded-md">
         <img
@@ -39,14 +42,13 @@ export default function ProductCard({ product }) {
       {/* Button */}
       <div className="mt-4">
         <button
-          className={`w-full py-2 text-white font-semibold rounded-md ${
-            product.stock > 0
-              ? "bg-blue-500 hover:bg-blue-600"
-              : "bg-gray-400 cursor-not-allowed"
-          }`}
-          disabled={product.stock === 0}
+          disabled={!product.isAvailable || product.stock <= 0}
+           
+          className="w-full px-3 py-2 text-sm rounded-md text-white 
+            bg-blue-600 hover:bg-blue-700 
+            disabled:bg-gray-400 transition"
         >
-          {product.stock > 0 ? "Buy Now" : "Unavailable"}
+          {product.isAvailable && product.stock > 0 ? "Buy Now" : "Unavailable"}
         </button>
       </div>
     </Link>
