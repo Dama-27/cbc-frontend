@@ -27,12 +27,13 @@ export default function CheckoutPage(){
     function changeQty(index, qty){
         const newQty = cart[index].qty + qty
         
-        if(newQty <= 1){
+        if(newQty < 1){
             removeFromCart(index)
             return
         }
         else{
-            cart[index].qty = newQty
+            const newCart = [...cart] //Distruction
+            newCart[index].qty = newQty
             setCart(newCart)
         }
         
@@ -92,7 +93,7 @@ export default function CheckoutPage(){
                                     <button className="absolute right-[-35px] top-1/2 -translate-y-1/2 text-red-500 hover:bg-red-600 hover:text-white transition-all duration-300 p-2 rounded-full cursor-pointer" 
                                     onClick={
                                         ()=>{
-                                           removeFromCart(item.productId)
+                                           removeFromCart(index)
                                         }
                                     }>
                                         <BiTrash />
