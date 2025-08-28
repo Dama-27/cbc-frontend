@@ -9,7 +9,7 @@ export default function CartPage(){
     return(
         <div className="w-full h-full flex flex-col items-center pt-4 relative">
             <div className="w-[300px] h-[80px] shadow-2xl absolute top-1 right-1 flex  flex-col justify-center items-center">
-                <p className="text-2xl text-secondary font-bold">Toral: 
+                <p className="text-2xl text-secondary font-bold">Total: 
                     <span className="text-accent font-bold mx-2">
                         {getTotal().toFixed(2)}
                     </span>
